@@ -1,4 +1,11 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
+import {
+    deleteItem,
+    getItem,
+    getItems,
+    setItem,
+    updateItem,
+} from "../controllers/item";
 
 const router = Router();
 
@@ -6,8 +13,7 @@ const router = Router();
  * https://[Ipv4]:[PORT]/items [GET]
  */
 
-router.get("/", (req: Request, res: Response) => {
-    res.send("Hola");
-});
+router.route("/").get(getItems).post(setItem);
+router.route("/:id").get(getItem).put(updateItem).delete(deleteItem);
 
 export { router };
