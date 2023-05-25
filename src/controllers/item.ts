@@ -3,6 +3,8 @@ import { handleHttp } from "../utils/error.handle";
 
 export const getItem = async (req: Request, res: Response): Promise<void> => {
     try {
+        const { body } = req;
+        res.status(200).json(body);
     } catch (e) {
         handleHttp(res, "Ocurrio un error en getItem");
     }
@@ -16,7 +18,7 @@ export const getItems = async (req: Request, res: Response): Promise<void> => {
 };
 
 export const updateItem = async (
-    req: Response,
+    req: Request,
     res: Response
 ): Promise<void> => {
     try {
@@ -25,7 +27,7 @@ export const updateItem = async (
     }
 };
 
-export const setItem = async (req: Response, res: Response): Promise<void> => {
+export const setItem = async (req: Request, res: Response): Promise<void> => {
     try {
     } catch (e) {
         handleHttp(res, "Ocurrio un error en setItem");
@@ -33,7 +35,7 @@ export const setItem = async (req: Response, res: Response): Promise<void> => {
 };
 
 export const deleteItem = async (
-    req: Response,
+    req: Request,
     res: Response
 ): Promise<void> => {
     try {
