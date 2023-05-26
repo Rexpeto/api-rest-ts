@@ -11,3 +11,8 @@ export const getCars = async () => {
 
     return response;
 };
+
+export const getCar = async (_id: string) => {
+    const response = await ItemModel.findOne({ _id });
+    return response;
+};
