@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
-import { insertItem, getCars } from "../services/item";
+import { insertCar, getCars } from "../services/item";
 
 export const getItem = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -34,7 +34,7 @@ export const setItem = async (req: Request, res: Response): Promise<void> => {
     const { body } = req;
 
     try {
-        const response = await insertItem(body);
+        const response = await insertCar(body);
         res.status(200).json(response);
     } catch (e) {
         handleHttp(res, "Ocurrio un error insertando los datos", e);
