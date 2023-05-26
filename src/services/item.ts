@@ -23,3 +23,8 @@ export const updateCar = async (_id: string, data: Car) => {
     });
     return response;
 };
+
+export const deleteCar = async (_id: string) => {
+    const response = await ItemModel.deleteOne({ _id });
+    return response;
+};
