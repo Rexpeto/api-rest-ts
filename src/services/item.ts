@@ -16,3 +16,10 @@ export const getCar = async (_id: string) => {
     const response = await ItemModel.findOne({ _id });
     return response;
 };
+
+export const updateCar = async (_id: string, data: Car) => {
+    const response = await ItemModel.findOneAndUpdate({ _id }, data, {
+        new: true,
+    });
+    return response;
+};
