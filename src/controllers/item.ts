@@ -1,6 +1,12 @@
 import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
-import { insertCar, getCar, getCars, updateCar } from "../services/item";
+import {
+    insertCar,
+    getCar,
+    getCars,
+    updateCar,
+    deleteCar,
+} from "../services/item";
 
 export const getItem = async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
@@ -51,7 +57,10 @@ export const deleteItem = async (
     req: Request,
     res: Response
 ): Promise<void> => {
+    const { id } = req.params;
     try {
+        const response = await deleteCar(id);
+        res.status(200).json({ msg: "Eliminado de manera exitosa" });
     } catch (e) {
         handleHttp(res, "Ocurrio un error en deleteItem");
     }
