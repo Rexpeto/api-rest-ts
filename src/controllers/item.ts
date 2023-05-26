@@ -1,11 +1,13 @@
 import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
-import { insertCar, getCars } from "../services/item";
+import { insertCar, getCar, getCars } from "../services/item";
 
 export const getItem = async (req: Request, res: Response): Promise<void> => {
+    const { id } = req.params;
+
     try {
-        const { body } = req;
-        res.status(200).json(body);
+        const response = await getCar(id);
+        res.status(200).json(response);
     } catch (e) {
         handleHttp(res, "Ocurrio un error en getItem");
     }
