@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
-import { insertItem } from "../services/item";
+import { insertItem, getCars } from "../services/item";
 
 export const getItem = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -13,6 +13,8 @@ export const getItem = async (req: Request, res: Response): Promise<void> => {
 
 export const getItems = async (req: Request, res: Response): Promise<void> => {
     try {
+        const response = await getCars();
+        res.status(200).json(response);
     } catch (e) {
         handleHttp(res, "Ocurrio un error en getItems");
     }
