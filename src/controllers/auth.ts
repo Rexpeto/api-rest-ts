@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { newUser } from "../services/auth";
+import { loginUser, newUser } from "../services/auth";
 import { handleHttp } from "../utils/error.handle";
 
 export const registerCrtl = async ({ body }: Request, res: Response) => {
@@ -14,4 +14,15 @@ export const registerCrtl = async ({ body }: Request, res: Response) => {
     } catch (e) {
         handleHttp(res, "Email o Contraseña inválida", e);
     }
-}
+};
+
+export const loginCtrl = async (req: Request, res: Response) => {
+    const { email, password } = req.body;
+
+    try {
+        const response = await loginUser({ email, password });
+        res.status(200).json(response);
+    } catch (e) {
+        handleHttp(res, "Email o Contraseña inválida", e);
+    }
+};
