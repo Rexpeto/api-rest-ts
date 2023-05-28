@@ -1,5 +1,4 @@
-import { sign } from "jsonwebtoken";
-import { ObjectId } from "mongoose";
+import { sign, verify } from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET || "tokenLindo";
 
@@ -10,3 +9,9 @@ export const generateToken = (email: string) => {
 
     return jwt;
 };
+
+export const verifiedToken = (token: string) => {
+    const isOk = verify(token, JWT_SECRET);
+
+    return isOk;
+}
