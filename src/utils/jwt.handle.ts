@@ -1,4 +1,4 @@
-import { sign, verify } from "jsonwebtoken";
+import { JwtPayload, sign, verify } from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET || "tokenLindo";
 
@@ -11,7 +11,7 @@ export const generateToken = (email: string) => {
 };
 
 export const verifiedToken = (token: string) => {
-    const isOk = verify(token, JWT_SECRET);
+    const isOk: string | JwtPayload = verify(token, JWT_SECRET);
 
     return isOk;
 }
